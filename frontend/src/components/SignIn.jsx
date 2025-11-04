@@ -28,8 +28,7 @@ function SignInForm() {
 
   const navigate = useNavigate();
 
-  // !! IMPORTANT: Change this to your backend URL
-  const API_BASE_URL = "http://localhost:4000";
+  const API_BASE_URL = import.meta.env.API_BASE_URL || "http://localhost:4000";
 
   useEffect(() => {
     setMounted(true);

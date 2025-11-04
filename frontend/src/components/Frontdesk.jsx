@@ -21,7 +21,7 @@ const Frontdesk = () => {
   const recognitionRef = useRef(null);
   const synthRef = useRef(null);
 
-  const API_BASE_URL = "http://localhost:4000";
+  const API_BASE_URL = import.meta.env.API_BASE_URL || "http://localhost:4000";
 
   useEffect(() => {
     setIsClient(true);

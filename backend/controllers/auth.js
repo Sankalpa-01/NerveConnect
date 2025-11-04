@@ -46,8 +46,12 @@ async function signup(req, res) {
       { expiresIn: "7d" }
     );
 
-    // set cookie (use auth_token to match frontend)
-    res.cookie("auth_token", token, { httpOnly: true, sameSite: "lax" });
+    res.cookie("auth_token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     return res.status(201).json({ id: result.insertedId, username, email });
   } catch (err) {
     console.error("Signup error:", err);
@@ -89,7 +93,12 @@ async function signin(req, res) {
       { expiresIn: "7d" }
     );
 
-    res.cookie("auth_token", token, { httpOnly: true, sameSite: "lax" });
+    res.cookie("auth_token", token, {
+      httpOnly: true,
+      secure: true, // Only send over HTTPS (Render is HTTPS)
+      sameSite: "None", // Allow cross-domain requests
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
     return res.json({
       id: user._id,
       username: user.username,
