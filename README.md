@@ -38,7 +38,7 @@ MongoDB
 ## 🚀 Deployment
 Vercel (Frontend), Render (Backend)
 
-## $$ 📂 Folder Structure
+## 📂 Folder Structure
 This project uses a monorepo structure with two main folders: frontend and backend.
 
 NerveConnect_React/
@@ -75,72 +75,66 @@ NerveConnect_React/
     └── vite.config.js
 
 
-# ⚙️ Setup & Development
+## ⚙️ Setup & Development
 
 Follow these steps to get the project running locally.
 
-## 1. Clone the Repository
+### 1. Clone the Repository
 git clone [https://github.com/your-username/NerveConnect_React.git](https://github.com/your-username/NerveConnect_React.git)
 cd NerveConnect_React
 
-## 2. Set Up the Backend
+### 2. Set Up the Backend
 First, cd into the backend folder to set up the server.
 
-### 1. Navigate to the backend folder
+#### 1. Navigate to the backend folder
 cd backend
 
-### 2. Install dependencies
+#### 2. Install dependencies
 npm install
 
-### 3. Create your environment file (This is the most important step!)
-.env
-Now, open the .env file you just created and add the following variables.
-
-.env (Backend)
+#### 3. Create your environment file (This is the most important step!)
+1. .env (Backend)
 Server Configuration
 PORT=4000
 FRONTEND_URL=http://localhost:5173
 
-MongoDB Connection
+2. MongoDB Connection
 Get this from your MongoDB Atlas dashboard
 MONGODB_URI=mongodb+srv://<username>:<password>@yourcluster.mongodb.net/yourDatabaseName
 
-Auth Secret
+3. Auth Secret
 Use any long, random string
 JWT_SECRET=THIS_IS_A_VERY_STRONG_AND_RANDOM_SECRET_KEY
 
-Google Gemini API Key
+4. Google Gemini API Key
 Get this from Google AI Studio
 GEMINI_API_KEY=AIzaSy...
 
-(Optional) Dev flags
-ENABLE_DB_STATUS=true
-
-4. Run the backend server:
+5. Run the backend server:
 npm start
 
 Your backend should now be running on http://localhost:4000.
 
-## 3. Set Up the Frontend
+### 3. Set Up the Frontend
 Open a new terminal window and navigate to the frontend directory.
 
-### 1. Navigate to the frontend folder
+#### 1. Navigate to the frontend folder
 cd frontend
 
-### 2. Install dependencies
+#### 2. Install dependencies
 npm install
 
-### 3. Run the frontend development server
+#### 3. Run the frontend development server
 npm run dev
 
-Your frontend app will now be running on http://localhost:5173.
+### Your frontend app will now be running on http://localhost:5173.
 
 ## 🧪 Testing the App
 Visit these routes in your browser to test the application:
-http://localhost:5173/signup - to create an account
-http://localhost:5173/signin - to log in
-http://localhost:5173/frontdesk - for voice-based appointment booking
-http://localhost:5173/dashboard - for the doctor’s AI-powered prescription tool
+http://localhost:5173/signup - to create an account, 
+http://localhost:5173/signin - to log in, 
+http://localhost:5173/frontdesk - for voice-based appointment booking, 
+http://localhost:5173/dashboard - for the doctor’s AI-powered prescription tool, 
 
 ## 📌 Todo / Improvements
 ✅ Add doctor availability calendar ⏳ Notifications (email/text)
