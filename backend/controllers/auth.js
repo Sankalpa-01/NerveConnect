@@ -95,9 +95,9 @@ async function signin(req, res) {
 
     res.cookie("auth_token", token, {
       httpOnly: true,
-      secure: true, // Only send over HTTPS (Render is HTTPS)
-      sameSite: "None", // Allow cross-domain requests
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      secure: true,
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return res.json({
       id: user._id,
