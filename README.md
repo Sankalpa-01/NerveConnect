@@ -108,7 +108,7 @@ JWT_SECRET=THIS_IS_A_VERY_STRONG_AND_RANDOM_SECRET_KEY
 
 4. Google Gemini API Key
 Get this from Google AI Studio
-GEMINI_API_KEY=AIzaSy...
+GEMINI_API_KEY=.....
 
 5. Run the backend server:
 npm start
