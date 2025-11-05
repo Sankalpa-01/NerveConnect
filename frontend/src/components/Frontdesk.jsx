@@ -1,14 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import {
-  Mic,
-  MicOff,
-  Phone,
-  Heart,
-  Activity,
-  Zap,
-  Wifi,
-  Volume2,
-} from "lucide-react";
 
 const Frontdesk = () => {
   const [isListening, setIsListening] = useState(false);
