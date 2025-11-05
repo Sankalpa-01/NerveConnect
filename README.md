@@ -36,7 +36,8 @@ Google Gemini API (via generativelanguage.googleapis.com)
 MongoDB
 
 ## 🚀 Deployment
-Vercel (Frontend), Render (Backend)
+-- Vercel (Frontend) - https://nerve-connect-frontend.vercel.app
+-- Render (Backend) - https://nerveconnect-backend.onrender.com
 
 ## 📂 Folder Structure
 This project uses a monorepo structure with two main folders: frontend and backend.
