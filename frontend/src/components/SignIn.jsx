@@ -10,8 +10,6 @@ import {
   CheckCircle,
   AlertCircle,
   Sparkles,
-  Chrome,
-  Apple,
 } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -293,35 +291,7 @@ function SignInForm() {
               style={{ animationDelay: "0.7s" }}
             >
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300/20 to-transparent"></div>
-              <span className="px-4 text-sm text-blue-200">
-                or continue with
-              </span>
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300/20 to-transparent"></div>
-            </div>
-
-            {/* Social Login Buttons */}
-            <div
-              className="grid grid-cols-2 gap-3 mb-6 animate-fade-in"
-              style={{ animationDelay: "0.8s" }}
-            >
-              <button
-                type="button"
-                onClick={() => handleSocialLogin("Google")}
-                className="flex items-center justify-center space-x-2 py-3 px-4 bg-white/10 hover:bg-blue-500/20 border border-blue-300/20 hover:border-blue-400/30 rounded-xl transition-all duration-300 text-blue-200 hover:text-white backdrop-blur-sm transform hover:scale-105 hover:shadow-lg"
-                disabled={isLoading}
-              >
-                <Chrome className="w-5 h-5" />
-                <span className="text-sm">Google</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSocialLogin("Apple")}
-                className="flex items-center justify-center space-x-2 py-3 px-4 bg-white/10 hover:bg-blue-500/20 border border-blue-300/20 hover:border-blue-400/30 rounded-xl transition-all duration-300 text-blue-200 hover:text-white backdrop-blur-sm transform hover:scale-105 hover:shadow-lg"
-                disabled={isLoading}
-              >
-                <Apple className="w-5 h-5" />
-                <span className="text-sm">Apple</span>
-              </button>
             </div>
 
             {/* Sign Up Link */}
