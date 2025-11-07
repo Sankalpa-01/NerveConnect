@@ -10,7 +10,7 @@ import {
   CheckCircle,
   AlertCircle,
   Sparkles,
-  Github,
+  Apple,
   Chrome,
   UserPlus,
   Shield,
@@ -435,12 +435,12 @@ function SignUpForm() {
               </button>
               <button
                 type="button"
-                onClick={() => handleSocialSignUp("GitHub")}
+                onClick={() => handleSocialSignUp("Apple")}
                 className="flex items-center justify-center space-x-2 py-3 px-4 bg-white/10 hover:bg-blue-500/20 border border-blue-300/20 hover:border-blue-400/30 rounded-xl transition-all duration-300 text-blue-200 hover:text-white backdrop-blur-sm transform hover:scale-105 hover:shadow-lg"
                 disabled={isLoading}
               >
-                <Github className="w-5 h-5" />
-                <span className="text-sm">GitHub</span>
+                <Apple className="w-5 h-5" />
+                <span className="text-sm">Apple</span>
               </button>
             </div>
 
