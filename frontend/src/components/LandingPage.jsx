@@ -2138,7 +2138,7 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mt-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-serif">
               <span className="block mb-5">Healthcare Management</span>
@@ -2391,12 +2391,7 @@ export default function LandingPage() {
                   >
                     <PlayCircle className="w-5 h-5" /> Play Demo
                   </button>
-                  <button
-                    onClick={createRipple}
-                    className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center gap-2"
-                  >
-                    <Users className="w-5 h-5" /> Read Case Studies
-                  </button>
+                  
                 </div>
               </div>
 
@@ -2625,7 +2620,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Call Us</h4>
-                      <p className="text-gray-600">+1 (800) 555-HEAL</p>
+                      <p className="text-gray-600">+91 7134566766</p>
                     </div>
                   </div>
 
@@ -2637,9 +2632,9 @@ export default function LandingPage() {
                     <div>
                       <h4 className="font-semibold text-gray-900">Visit Us</h4>
                       <p className="text-gray-600">
-                        123 Healthcare Ave, Suite 500
+                        Chhend Colony, Flat No.-167
                         <br />
-                        San Francisco, CA 94107
+                        Rourkela, Odisha-769003
                       </p>
                     </div>
                   </div>

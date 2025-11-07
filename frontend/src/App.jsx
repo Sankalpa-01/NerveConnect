@@ -19,6 +19,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/demo" element={<Demo />} />
+        
         {/* You can add a 404 page here */}
         <Route path="*" element={<h1>404: Page Not Found</h1>} />
       </Routes>
