@@ -1518,6 +1518,9 @@ import { Link, useNavigate } from "react-router-dom";
 export default function LandingPage() {
   // State management
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
+  const [typedText, setTypedText] = useState('');
+  const fullText = 'Reimagined';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(null);
   const [formData, setFormData] = useState({
@@ -1580,6 +1583,9 @@ export default function LandingPage() {
     return () => clearInterval(timer);
   };
 
+  
+
+
   // Effects
   useEffect(() => {
     // Simulate loading
@@ -1598,9 +1604,29 @@ export default function LandingPage() {
           navRef.current.style.backdropFilter = "blur(16px) saturate(180%)";
         }
       }
+
+      // Section highlighting logic
+      const sections = ["home", "features", "about", "testimonials", "contact"];
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+    
 
     window.addEventListener("scroll", handleScroll);
+  
 
     // Intersection Observer for counters
     const statsObserver = new IntersectionObserver(
@@ -1628,6 +1654,27 @@ export default function LandingPage() {
     };
   }, []);
 
+  // Typing effect (independent)
+  useEffect(() => {
+    let currentIndex = 0;
+    setTypedText(''); // reset before starting
+  
+    const typingInterval = setInterval(() => {
+      setTypedText(fullText.slice(0, currentIndex + 1));
+      currentIndex++;
+  
+      if (currentIndex === fullText.length) {
+        clearInterval(typingInterval);
+      }
+    }, 200); // slower typing (increase this number to slow down more)
+  
+    return () => clearInterval(typingInterval);
+  }, [fullText]);
+  
+  
+
+
+
   // Helper functions
   const toggleAccordion = (index) => {
     setActiveAccordion(activeAccordion === index ? null : index);
@@ -1640,6 +1687,7 @@ export default function LandingPage() {
       setFormErrors((prev) => ({ ...prev, [name]: false }));
     }
   };
+
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1831,7 +1879,34 @@ export default function LandingPage() {
   };
 
   return (
-    <>
+    <> <style>{`
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes ecg {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
+    @keyframes ecgPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+  `}</style>
+
       {/* Loading Screen */}
       {loading && (
         <div className="fixed inset-0 bg-gradient-to-r from-blue-600 to-teal-500 flex justify-center items-center z-50 transition-opacity duration-500">
@@ -1871,33 +1946,63 @@ export default function LandingPage() {
               <div className="hidden md:flex space-x-8">
                 <button
                   onClick={() => scrollToSection("home")}
-                  className="text-white hover:text-teal-300 transition-colors duration-300 font-medium"
+                  className={`text-white hover:text-teal-300 transition-colors duration-300 font-medium relative ${
+                    activeSection === "home" ?  "text-teal-300 after:w-full after:opacity-100"
+                    : "text-white after:w-0 after:opacity-0"
+                  }`}
                 >
                   Home
+                  {activeSection === "home" && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-teal-300 rounded-full"></span>
+                  )}
                 </button>
                 <button
                   onClick={() => scrollToSection("features")}
-                  className="text-white hover:text-teal-300 transition-colors duration-300 font-medium"
+                  className={`text-white hover:text-teal-300 transition-colors duration-300 font-medium relative ${
+                    activeSection === "features" ?  "text-teal-300 after:w-full after:opacity-100"
+                    : "text-white after:w-0 after:opacity-0"
+                  }`}
                 >
                   Features
+                  {activeSection === "features" && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-teal-300 rounded-full"></span>
+                  )}
                 </button>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="text-white hover:text-teal-300 transition-colors duration-300 font-medium"
+                  className={`text-white hover:text-teal-300 transition-colors duration-300 font-medium relative ${
+                    activeSection === "about" ? "text-teal-300 after:w-full after:opacity-100"
+                    : "text-white after:w-0 after:opacity-0"
+                  }`}
                 >
                   About
+                  {activeSection === "about" && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-teal-300 rounded-full"></span>
+                  )}
                 </button>
                 <button
                   onClick={() => scrollToSection("testimonials")}
-                  className="text-white hover:text-teal-300 transition-colors duration-300 font-medium"
+                  className={`text-white hover:text-teal-300 transition-colors duration-300 font-medium relative ${
+                    activeSection === "testimonials" ? "text-teal-300 after:w-full after:opacity-100"
+                    : "text-white after:w-0 after:opacity-0"
+                  }`}
                 >
                   Testimonials
+                  {activeSection === "testimonials" && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-teal-300 rounded-full"></span>
+                  )}
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="text-white hover:text-teal-300 transition-colors duration-300 font-medium"
+                  className={`text-white hover:text-teal-300 transition-colors duration-300 font-medium relative ${
+                    activeSection === "contact"? "text-teal-300 after:w-full after:opacity-100"
+                    : "text-white after:w-0 after:opacity-0"
+                  }`}
                 >
                   Contact
+                  {activeSection === "contact" && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-teal-300 rounded-full"></span>
+                  )}
                 </button>
               </div>
 
@@ -2011,81 +2116,124 @@ export default function LandingPage() {
 
         {/* Hero Section */}
         <section
-          id="home"
-          className="min-h-screen bg-gradient-to-r from-blue-600 to-teal-500 relative flex items-center justify-center overflow-hidden"
-        >
-          {/* Animated particles background */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-white/10"
-                style={{
-                  top: `${[20, 70, 40, 60, 30][i]}%`,
-                  left: `${[15, 80, 50, 30, 70][i]}%`,
-                  width: `${[8, 12, 6, 10, 8][i]}px`,
-                  height: `${[8, 12, 6, 10, 8][i]}px`,
-                  animation: `float ${[10, 15, 12, 14, 11][i]}s ease-in-out ${
-                    [1, 2, 3, 2, 1][i]
-                  }s infinite`,
-                }}
-              ></div>
-            ))}
-          </div>
+        id="home"
+        className="mt-9 min-h-screen bg-gradient-to-r from-blue-600 to-teal-500 relative flex items-center justify-center overflow-hidden"
+      >
+        {/* Animated particles background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white/10"
+              style={{
+                top: `${[20, 70, 40, 60, 30][i]}%`,
+                left: `${[15, 80, 50, 30, 70][i]}%`,
+                width: `${[8, 12, 6, 10, 8][i]}px`,
+                height: `${[8, 12, 6, 10, 8][i]}px`,
+                animation: `float ${[10, 15, 12, 14, 11][i]}s ease-in-out ${
+                  [1, 2, 3, 2, 1][i]
+                }s infinite`,
+              }}
+            ></div>
+          ))}
+        </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-serif">
-                <span className="block">Healthcare Management</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 animate-pulse">
-                  Reimagined
-                </span>
-              </h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-serif">
+              <span className="block mb-5">Healthcare Management</span>
+              <span className={`block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 ${typedText.length === fullText.length ? 'animate-pulse' : 'typing-cursor'}`}>
+                {typedText || '\u00A0'}
+              </span>
+            </h1>
 
-              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-                Streamline your medical practice with AI-powered prescriptions,
-                voice-enabled appointments, and comprehensive patient management
-              </p>
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">
+              Streamline your medical practice with AI-powered prescriptions,
+              voice-enabled appointments, and comprehensive patient management
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {/* [FIXED] Replaced <i> with <Icon> */}
-                <button
-                  onClick={createRipple}
-                  className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  <PlayCircle className="w-5 h-5" /> Start Free Trial
-                </button>
-                <button
-                  onClick={createRipple}
-                  className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <Video className="w-5 h-5" /> Watch Demo
-                </button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={createRipple}
+                className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <PlayCircle className="w-5 h-5" /> Start Free Trial
+              </button>
+              <button
+                onClick={createRipple}
+                className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <Video className="w-5 h-5" /> Watch Demo
+              </button>
+            </div>
 
-              <div className="mt-12">
-                <button
-                  onClick={() => scrollToSection("features")}
-                  className="inline-block p-2 rounded-full bg-white/10 backdrop-blur-md cursor-pointer hover:bg-white/20 transition-all duration-300"
-                >
-                  <svg
-                    className="w-6 h-6 text-white animate-bounce"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+            {/* ECG Animation */}
+            <div className="mt-20 relative max-w-2xl mx-auto">
+              <div className="relative h-24 bg-white/5 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10">
+                {/* Grid lines */}
+                <svg className="absolute inset-0 w-full h-full opacity-20">
+                  <defs>
+                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+
+                {/* ECG Line Animation - Slower (6s instead of 3s) */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 100" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="ecgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+                      <stop offset="50%" stopColor="rgba(255,255,255,1)" />
+                      <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Animated ECG path */}
+                  <g style={{ animation: 'ecg 6s linear infinite' }}>
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      d="M 0 50 L 50 50 L 60 50 L 70 20 L 80 80 L 90 50 L 100 50 L 120 50 L 130 45 L 140 55 L 150 50 L 250 50 L 260 50 L 270 20 L 280 80 L 290 50 L 300 50 L 320 50 L 330 45 L 340 55 L 350 50 L 450 50 L 460 50 L 470 20 L 480 80 L 490 50 L 500 50 L 520 50 L 530 45 L 540 55 L 550 50 L 650 50 L 660 50 L 670 20 L 680 80 L 690 50 L 700 50 L 720 50 L 730 45 L 740 55 L 750 50 L 800 50"
+                      fill="none"
+                      stroke="url(#ecgGradient)"
                       strokeWidth="2"
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    ></path>
-                  </svg>
-                </button>
+                      strokeLinecap="round"
+                      style={{ animation: 'ecgPulse 2s ease-in-out infinite' }}
+                    />
+                  </g>
+                </svg>
+               </div>
+
+              {/* Label */}
+              <div className="mt-4 flex items-center justify-center gap-2 text-white/60 text-sm">
+                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                <span>Real-time health monitoring ready</span>
               </div>
             </div>
+
+            <div className="mt-12">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="inline-block p-2 rounded-full bg-white/10 backdrop-blur-md cursor-pointer hover:bg-white/20 transition-all duration-300"
+              >
+                <svg
+                  className="w-6 h-6 text-white animate-bounce"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Trusted By Section */}
         <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
@@ -2221,7 +2369,7 @@ export default function LandingPage() {
         </section>
 
         {/* Video Demo Section */}
-        <section className="py-20 bg-white">
+        <section id="about" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
