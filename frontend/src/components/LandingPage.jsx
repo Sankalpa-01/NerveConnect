@@ -1492,6 +1492,7 @@ import {
   CheckCircle, // For feature lists
   ChevronDown, // For FAQ
   ChevronUp,
+  MessageSquare,
   FileText, // For FAQ
   Mail, // For contact
   Phone, // For contact
@@ -2277,6 +2278,22 @@ export default function LandingPage() {
                     "Our MCP server acts as your intelligent backbone, managing all clinic data with enterprise-level security and seamless integration.",
                   highlight: "100% HIPAA compliant",
                 },
+                {
+                  icon: <MessageSquare className="w-8 h-8 text-blue-600" />,
+                  title: "Context-Aware Suggestions",
+                  description:
+                    "Understands patient context and provides tailored treatment or medication advice suited to their medical background.",
+                  highlight: "Personalized medical insights",
+                },
+                {
+                  icon: <CheckCircle className="w-8 h-8 text-pink-600" />,
+                  title: "Smart Prescription Validation",
+                  description:
+                    "Automatically verifies prescriptions for dosage accuracy, drug conflicts, and potential side effects before submission.",
+                  highlight: "Error-free prescriptions",
+                },
+                
+                
                 {
                   icon: <TrendingUp className="w-8 h-8 text-orange-600" />,
                   title: "Adaptive Intelligence",
