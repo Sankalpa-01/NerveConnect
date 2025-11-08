@@ -8,7 +8,6 @@ async function createAppointment(req, res) {
     if (!patientId || !date) return res.status(400).json({ error: 'patientId and date required' })
 
     const db = await getDb()
-    // verify patient belongs to user
     const patient = await db.collection('patients').findOne({ _id: new ObjectId(patientId), userId })
     if (!patient) return res.status(404).json({ error: 'Patient not found or not owned by user' })
 
@@ -46,7 +45,6 @@ async function getAppointments(req, res) {
       return res.json(list)
     }
 
-    // get appointments for all patients owned by user
     const patients = await db.collection('patients').find({ userId }).project({ _id: 1 }).toArray()
     const patientIds = patients.map(p => p._id)
     const list = await db.collection('appointments').find({ patientId: { $in: patientIds } }).toArray()
@@ -69,7 +67,6 @@ async function getTodayCount(req, res) {
 
     const db = await getDb()
 
-    // find patients for user
     const patients = await db.collection('patients').find({ userId }).project({ _id: 1 }).toArray()
     const patientIds = patients.map(p => p._id)
 

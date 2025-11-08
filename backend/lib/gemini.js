@@ -53,10 +53,9 @@ async function extractAppointmentDetailsFromTranscript(transcript) {
         parts: [{ text: prompt }],
       },
     ],
-    // ADD THIS CONFIGURATION
     generationConfig: {
-      responseMimeType: "application/json", // This forces JSON output
-      temperature: 0, // Makes the output more deterministic
+      responseMimeType: "application/json", 
+      temperature: 0, 
     },
   };
 
@@ -67,22 +66,18 @@ async function extractAppointmentDetailsFromTranscript(transcript) {
       headers: { "Content-Type": "application/json" },
     });
 
-    // The response will be a guaranteed JSON string, but might be wrapped in markdown.
-    // Let's clean it just in case.
+ 
     let textResponse =
       res.data?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
 
-    // Clean up potential markdown blocks
     textResponse = textResponse.replace(/^```json\n/, "").replace(/\n```$/, "");
 
-    // Now, parsing is much safer
     return JSON.parse(textResponse);
   } catch (err) {
     console.error(
       "Gemini JSON extraction failed:",
       err.response ? err.response.data : err.message
     );
-    // If the API call itself fails, throw an error
     throw new Error("Failed to extract appointment details from transcript.");
   }
 }

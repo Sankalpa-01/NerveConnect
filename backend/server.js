@@ -41,7 +41,7 @@ app.use("/api/patients", patientRoutes);
 // appointments
 app.use("/api/appointments", appointmentRoutes);
 
-// Debug endpoint to inspect DB (only enabled in non-production or when explicitly allowed)
+// Debug endpoint to inspect DB 
 if (
   process.env.ENABLE_DB_STATUS === "true" ||
   process.env.NODE_ENV !== "production"

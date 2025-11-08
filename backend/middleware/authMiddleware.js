@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 
 function authMiddleware(req, res, next) {
   try {
-  // Token can be in Authorization header or cookie named 'token' or 'auth_token'
     const authHeader = req.headers.authorization || ''
     let token = null
     if (authHeader.startsWith('Bearer ')) token = authHeader.split(' ')[1]

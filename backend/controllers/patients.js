@@ -25,7 +25,6 @@ async function getPatients(req, res) {
     const patients = db.collection('patients')
     const list = await patients.find({ userId }).toArray()
 
-    // attach appointments to each patient
     const appointmentsCol = db.collection('appointments')
     const withAppointments = await Promise.all(
       list.map(async (p) => {

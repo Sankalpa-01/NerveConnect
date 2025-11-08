@@ -41,10 +41,9 @@ async function generatePrescription(req, res) {
           parts: [{ text: inputs }],
         },
       ],
-      // Add a generationConfig to force a more predictable response
       generationConfig: {
         temperature: 0.2,
-        responseMimeType: "text/plain", // Ensure it doesn't send JSON
+        responseMimeType: "text/plain", 
       },
     };
 
@@ -54,14 +53,12 @@ async function generatePrescription(req, res) {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
-      // Log the detailed error from Google's API
       console.error(
         "Gemini API request failed:",
         err?.response?.status,
         JSON.stringify(err?.response?.data, null, 2) || err?.message
       );
 
-      // We removed the mock fallback, so we just send the error
       return res.status(502).json({
         error: "Failed to call Gemini API",
         details: err?.response?.data?.error || err?.message,
@@ -73,7 +70,6 @@ async function generatePrescription(req, res) {
     const prescription =
       textResponse || "Prescription generation failed or returned empty.";
 
-    // Optionally save to MongoDB for logs
     try {
       const db = await getDb();
       const col = db.collection("ai_analysis");

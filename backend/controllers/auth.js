@@ -30,7 +30,6 @@ async function signup(req, res) {
     };
     const result = await users.insertOne(user);
 
-    // create token
     const secret = process.env.JWT_SECRET;
     if (!secret)
       return res.status(500).json({ error: "JWT_SECRET not configured" });

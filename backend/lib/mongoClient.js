@@ -26,7 +26,6 @@ async function connect() {
 
   const uri = process.env.MONGODB_URI;
   if (!uri) {
-    // If no URI provided, fallback to in-memory in non-production
     if (process.env.NODE_ENV !== "production") {
       console.warn(
         "MONGODB_URI not set; falling back to in-memory MongoDB for development"
@@ -36,12 +35,10 @@ async function connect() {
     throw new Error("MONGODB_URI not set in environment");
   }
 
-  // Try connecting to the remote MongoDB with a short timeout.
-  // If it fails and fallback is allowed, start an in-memory server.
   try {
     client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
     await client.connect();
-    db = client.db(); // use DB name encoded in URI or default
+    db = client.db(); 
     console.log("Connected to MongoDB successfully ✅");
     return db;
   } catch (err) {

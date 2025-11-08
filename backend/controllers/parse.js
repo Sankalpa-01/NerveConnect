@@ -33,7 +33,6 @@ async function parseTranscript(req, res) {
     try {
       parsed = JSON.parse(textResponse);
     } catch (e) {
-      // If the model returned text, but not pure JSON, return raw text
       return res.json({ raw: textResponse });
     }
 
