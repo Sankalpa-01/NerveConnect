@@ -10,7 +10,6 @@ const {
 const authRoutes = require("./routes/authRoutes");
 const patientRoutes = require("./routes/patientRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
-const { scheduleVoiceAppointment } = require("./controllers/voiceAppointments");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -32,6 +31,7 @@ app.post("/api/ai_analysis", generatePrescription);
 // store AI analysis for appointment (protected)
 const authMiddleware = require("./middleware/authMiddleware");
 app.post("/api/appointments/ai_analysis", authMiddleware, storeAnalysis);
+
 // auth
 app.use("/api/auth", authRoutes);
 
@@ -40,9 +40,6 @@ app.use("/api/patients", patientRoutes);
 
 // appointments
 app.use("/api/appointments", appointmentRoutes);
-
-// voice appointment (keeps original endpoint path /api/auth/appointment)
-app.post("/api/auth/appointment", scheduleVoiceAppointment);
 
 // Debug endpoint to inspect DB (only enabled in non-production or when explicitly allowed)
 if (
