@@ -62,12 +62,10 @@ if (
       return res.json({ ok: true, collections: result });
     } catch (err) {
       console.error("DB status error:", err);
-      return res
-        .status(500)
-        .json({
-          error: "Failed to fetch DB status",
-          details: err?.message || err,
-        });
+      return res.status(500).json({
+        error: "Failed to fetch DB status",
+        details: err?.message || err,
+      });
     }
   });
 }
