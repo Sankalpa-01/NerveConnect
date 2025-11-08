@@ -1491,7 +1491,9 @@ import {
   Video, // For buttons
   CheckCircle, // For feature lists
   ChevronDown, // For FAQ
-  ChevronUp, // For FAQ
+  ChevronUp,
+  MessageSquare,
+  FileText, // For FAQ
   Mail, // For contact
   Phone, // For contact
   MapPin, // For contact
@@ -1792,17 +1794,18 @@ export default function LandingPage() {
       ],
     },
     {
-      icon: <Mic className="w-12 h-12 text-green-600" />,
-      title: "Voice Appointments",
+      icon: <Calendar className="w-12 h-12 text-teal-600" />,
+      title: "Appointment & Follow-Up Tracker",
       description:
-        "Revolutionary speech-to-text system for front desk staff to book appointments hands-free.",
+        "Manage appointments, follow-ups, and reminders effortlessly with intelligent scheduling.",
       items: [
-        "Voice Recognition",
-        "Automatic Scheduling",
-        "Patient Information Capture",
-        "Confirmation System",
+        "Smart Scheduling",
+        "Follow-Up Reminders",
+        "Patient Queue Management",
+        "Calendar Sync Integration",
       ],
     },
+    
     {
       icon: <Shield className="w-12 h-12 text-red-600" />,
       title: "Secure MCP Server",
@@ -1828,17 +1831,18 @@ export default function LandingPage() {
       ],
     },
     {
-      icon: <Smartphone className="w-12 h-12 text-indigo-600" />,
-      title: "Mobile Ready",
+      icon: <FileText className="w-12 h-12 text-green-600" />,
+      title: "Smart Health Record Summarizer",
       description:
-        "Fully responsive design that works seamlessly across all devices and screen sizes.",
+        "Summarize lengthy patient health records into concise, actionable insights.",
       items: [
-        "Responsive Design",
-        "Touch Optimized",
-        "Offline Capability",
-        "Cross-platform",
+        "Automatic Medical Note Extraction",
+        "Past Diagnosis Summary",
+        "Treatment History Overview",
+        "AI-driven Recommendations",
       ],
-    },
+    }
+    
   ];
 
   const testimonials = [
@@ -2138,7 +2142,7 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mt-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-serif">
               <span className="block mb-5">Healthcare Management</span>
@@ -2252,13 +2256,7 @@ export default function LandingPage() {
             {/* Features Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                {
-                  icon: <Mic className="w-8 h-8 text-blue-600" />,
-                  title: "Voice-Powered Efficiency",
-                  description:
-                    "Transform appointment booking with our advanced speech-to-text system. No more typing - just speak naturally and watch appointments get scheduled instantly.",
-                  highlight: "50% faster booking process",
-                },
+              
                 {
                   icon: <Brain className="w-8 h-8 text-purple-600" />,
                   title: "AI That Learns Your Style",
@@ -2281,19 +2279,29 @@ export default function LandingPage() {
                   highlight: "100% HIPAA compliant",
                 },
                 {
+                  icon: <MessageSquare className="w-8 h-8 text-blue-600" />,
+                  title: "Context-Aware Suggestions",
+                  description:
+                    "Understands patient context and provides tailored treatment or medication advice suited to their medical background.",
+                  highlight: "Personalized medical insights",
+                },
+                {
+                  icon: <CheckCircle className="w-8 h-8 text-pink-600" />,
+                  title: "Smart Prescription Validation",
+                  description:
+                    "Automatically verifies prescriptions for dosage accuracy, drug conflicts, and potential side effects before submission.",
+                  highlight: "Error-free prescriptions",
+                },
+                
+                
+                {
                   icon: <TrendingUp className="w-8 h-8 text-orange-600" />,
                   title: "Adaptive Intelligence",
                   description:
                     "The system evolves with every interaction, building smarter recommendations based on successful prescriptions and treatment outcomes.",
                   highlight: "Self-improving algorithms",
                 },
-                {
-                  icon: <Users className="w-8 h-8 text-teal-600" />,
-                  title: "Streamlined Workflows",
-                  description:
-                    "From voice booking to AI prescriptions, we eliminate administrative burden so you can focus on what matters most - patient care.",
-                  highlight: "Reduced admin time by 60%",
-                },
+                
               ].map((feature, index) => (
                 <div
                   key={index}
@@ -2391,12 +2399,7 @@ export default function LandingPage() {
                   >
                     <PlayCircle className="w-5 h-5" /> Play Demo
                   </button>
-                  <button
-                    onClick={createRipple}
-                    className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center gap-2"
-                  >
-                    <Users className="w-5 h-5" /> Read Case Studies
-                  </button>
+                  
                 </div>
               </div>
 
@@ -2625,7 +2628,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Call Us</h4>
-                      <p className="text-gray-600">+1 (800) 555-HEAL</p>
+                      <p className="text-gray-600">+91 7134566766</p>
                     </div>
                   </div>
 
@@ -2637,9 +2640,9 @@ export default function LandingPage() {
                     <div>
                       <h4 className="font-semibold text-gray-900">Visit Us</h4>
                       <p className="text-gray-600">
-                        123 Healthcare Ave, Suite 500
+                        Chhend Colony, Flat No.-167
                         <br />
-                        San Francisco, CA 94107
+                        Rourkela, Odisha-769003
                       </p>
                     </div>
                   </div>
