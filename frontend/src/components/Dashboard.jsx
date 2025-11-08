@@ -457,18 +457,7 @@ const EnhancedDoctorDashboard = () => {
     }
   };
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case "high":
-        return "bg-red-100 text-red-800 border-red-200";
-      case "medium":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
-      case "low":
-        return "bg-green-100 text-green-800 border-green-200";
-      default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
-    }
-  };
+  
 
   const getVitalColor = (vital, value) => {
     if (vital === "heartRate" && typeof value === "number") {
@@ -1074,9 +1063,8 @@ const EnhancedDoctorDashboard = () => {
                             ...patientAppointments[0],
                             patient,
                           });
-                          setShowDetailsModal(true); // Open modal on click
+                          setShowDetailsModal(true); 
                         }
-                        // You might want an else block to handle patients with no appointments
                       }}
                     >
                       <div className="flex items-center justify-between">
@@ -1141,7 +1129,6 @@ const EnhancedDoctorDashboard = () => {
       )}
       {selectedTab === "appointments" && (
         <div className="max-w-7xl mx-auto px-8 py-10 transition-colors">
-          {/* Appointments Section (moved from overview) */}
           <section
             className={`rounded-3xl shadow-md overflow-hidden border transition-colors ${
               darkMode
@@ -1911,7 +1898,7 @@ const EnhancedDoctorDashboard = () => {
                 New Appointment
               </h2>
               <button
-                type="button" // Add type="button" to prevent form submission
+                type="button" 
                 onClick={() => setShowAddAppointmentModal(false)}
                 className="p-3 hover:bg-green-100 rounded-full transition-colors duration-200"
               >
