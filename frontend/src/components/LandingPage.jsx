@@ -43,6 +43,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function LandingPage() {
   // State management
   const [loading, setLoading] = useState(true);
+  const videoRef = useRef(null);
   const [activeSection, setActiveSection] = useState("home");
   const [typedText, setTypedText] = useState("");
   const fullText = "Reimagined";
@@ -72,6 +73,12 @@ export default function LandingPage() {
   const navRef = useRef(null);
   const statsSectionRef = useRef(null);
   const countersRef = useRef(null);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play(); // start video
+    }
+  };
 
   // Animation function
   const animateCounters = () => {
@@ -936,7 +943,7 @@ export default function LandingPage() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <button
-                    onClick={createRipple}
+                    onClick={handlePlay}
                     className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 flex items-center gap-2"
                   >
                     <PlayCircle className="w-5 h-5" /> Play Demo
@@ -946,28 +953,17 @@ export default function LandingPage() {
 
               <div>
                 <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-gray-200 flex items-center justify-center">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button
-                      onClick={createRipple}
-                      className="w-24 h-24 bg-white/30 rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 backdrop-blur-sm"
-                    >
-                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
-                        <PlayCircle className="w-8 h-8 text-white" />
-                      </div>
-                    </button>
-                  </div>
+                  
 
-                  {/* [FIXED] Replaced local video path with a placeholder.
-                      Put your video in the /public folder and change the src.
-                      For example: src="/my-demo-video.mp4" 
-                  */}
+                 
                   <video
+                  ref={videoRef}
                     className="w-full h-full object-cover"
                     poster="https://placehold.co/640x360/1e40af/white?text=Product+Demo"
                     controls
                   >
                     <source
-                      src="/my-demo-video.mp4" // Make sure to add your video to the /public folder
+                      src="https://res.cloudinary.com/doojbkvn6/video/upload/v1762609149/Medicare_Pro_Video_Generation_yx3xa1.mp4" // video
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
