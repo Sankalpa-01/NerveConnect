@@ -4,12 +4,6 @@ NerveConnect is an intelligent, full-stack hospital management platform. It comb
 
 ## 🚀 Features
 
-### 🤖 AI Voice Frontdesk
-Speech-to-Text & Text-to-Speech using browser-native Web Speech APIs.
-Natural Language Understanding with Google Gemini for intent parsing (extracting patient name, doctor name, and date).
-Voice-based Confirmation of appointments.
-Futuristic UI featuring an interactive voice orb and fluid animations.
-
 ### 🧑‍⚕️ Doctor Dashboard
 Patient & Appointment Management (Full CRUD) for securely managing clinic data.
 AI-Powered Suggestions using the Google Gemini API to generate prescriptions based on symptoms and vitals.
@@ -66,7 +60,6 @@ NerveConnect_React/
     ├── src/
     │   ├── components/
     │   │   ├── Dashboard.jsx
-    │   │   ├── Frontdesk.jsx
     │   │   ├── LandingPage.jsx
     │   │   ├── SignIn.jsx
     │   │   └── SignUp.jsx
@@ -133,8 +126,7 @@ npm run dev
 ## 🧪 Testing the App
 Visit these routes in your browser to test the application:
 http://localhost:5173/signup - to create an account, 
-http://localhost:5173/signin - to log in, 
-http://localhost:5173/frontdesk - for voice-based appointment booking, 
+http://localhost:5173/signin - to log in,  
 http://localhost:5173/dashboard - for the doctor’s AI-powered prescription tool, 
 
 ## 📌 Todo / Improvements
