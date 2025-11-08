@@ -204,7 +204,7 @@ async function generatePrescription(req, res) {
     if (!apiKey)
       return res.status(500).json({ error: "GEMINI_API_KEY not configured" });
 
-    const modelName = "gemini-1.0-pro-latest";
+    const modelName = "gemini-pro-latest";
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     const payload = {
