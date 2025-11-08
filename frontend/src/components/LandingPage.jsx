@@ -184,7 +184,7 @@ export default function LandingPage() {
   // Typing effect (independent)
   useEffect(() => {
     let currentIndex = 0;
-    setTypedText(""); // reset before starting
+    setTypedText(""); 
 
     const typingInterval = setInterval(() => {
       setTypedText(fullText.slice(0, currentIndex + 1));
@@ -193,7 +193,7 @@ export default function LandingPage() {
       if (currentIndex === fullText.length) {
         clearInterval(typingInterval);
       }
-    }, 200); // slower typing (increase this number to slow down more)
+    }, 200); 
 
     return () => clearInterval(typingInterval);
   }, [fullText]);
@@ -229,7 +229,7 @@ export default function LandingPage() {
 
     if (!Object.values(errors).some((error) => error)) {
       // Logic to submit form
-      // In a real app, you might POST to formspree or a backend
+      
       console.log("Form submitted:", formData);
       alert("Message sent!"); // Placeholder
       setFormData({
@@ -287,7 +287,7 @@ export default function LandingPage() {
     },
   ];
 
-  // [FIXED] Replaced placeholder strings with actual Lucide icons
+  
   const features = [
     {
       icon: <Stethoscope className="w-12 h-12 text-blue-600" />,
@@ -389,10 +389,6 @@ export default function LandingPage() {
         "As someone who was hesitant about new technology, I was amazed at how intuitive MediCare Pro is. The analytics have helped me optimize my practice.",
       stars: 5,
     },
-  ];
-
-  const pricingPlans = [
-    // ... (This section is fine) ...
   ];
 
   const footerLinks = {
@@ -724,7 +720,6 @@ export default function LandingPage() {
                     <rect width="100%" height="100%" fill="url(#grid)" />
                   </svg>
 
-                  {/* ECG Line Animation - Slower (6s instead of 3s) */}
                   <svg
                     className="absolute inset-0 w-full h-full"
                     viewBox="0 0 800 100"
@@ -902,7 +897,7 @@ export default function LandingPage() {
                   key={index}
                   className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-300 hover:-translate-y-2.5 hover:shadow-xl group"
                 >
-                  {/* [FIXED] This now renders the icon component */}
+                 
                   <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
                   </div>
@@ -913,7 +908,7 @@ export default function LandingPage() {
                   <ul className="text-sm text-gray-500 space-y-2">
                     {feature.items.map((item, i) => (
                       <li key={i} className="flex items-center">
-                        {/* [FIXED] Replaced <i> with <Icon> */}
+                      
                         <CheckCircle className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0" />{" "}
                         <span>{item}</span>
                       </li>
@@ -979,9 +974,9 @@ export default function LandingPage() {
           ref={statsSectionRef}
           className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 relative overflow-hidden"
         >
-          {/* ... (This section is fine) ... */}
+         
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* ... */}
+         
           </div>
         </section>
 
@@ -1023,8 +1018,7 @@ export default function LandingPage() {
                   <p className="text-gray-600 mb-6 italic">
                     "{testimonial.quote}"
                   </p>
-                  {/* [FIXED] Kept Font Awesome <i> tags for stars, as it's the easiest way to show half-stars.
-                      Make sure you are loading Font Awesome in your main index.html file! */}
+                 
                   <div className="flex text-yellow-400">
                     {[...Array(5)].map((_, i) => (
                       <i
@@ -1073,7 +1067,7 @@ export default function LandingPage() {
                     <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                       {faq.question}
                     </h3>
-                    {/* [FIXED] Replaced <i> with <Icon> */}
+                    
                     {activeAccordion === index ? (
                       <ChevronUp className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-all duration-300" />
                     ) : (
@@ -1149,7 +1143,6 @@ export default function LandingPage() {
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                      {/* [FIXED] Replaced <i> with <Icon> */}
                       <Mail className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -1160,7 +1153,6 @@ export default function LandingPage() {
 
                   <div className="flex items-start">
                     <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                      {/* [FIXED] Replaced <i> with <Icon> */}
                       <Phone className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -1171,7 +1163,6 @@ export default function LandingPage() {
 
                   <div className="flex items-start">
                     <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                      {/* [FIXED] Replaced <i> with <Icon> */}
                       <MapPin className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -1315,7 +1306,6 @@ export default function LandingPage() {
                   technology and intuitive design.
                 </p>
                 <div className="flex space-x-4">
-                  {/* [FIXED] Replaced <i> with <Icon> */}
                   <a
                     href="#"
                     className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -1420,9 +1410,7 @@ export default function LandingPage() {
           </div>
         </footer>
       </div>
-      {/* [FIXED] Added style block for .animation-delay-xxxx
-          This was missing from your original code and would have caused a crash.
-      */}
+         
       <style>{`
         .animation-delay-2000 {
           animation-delay: 2s;
