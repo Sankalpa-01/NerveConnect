@@ -5,8 +5,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Demo from "./components/Demo";
 
-// Import your global CSS file
-import "./index.css"; // Make sure your tailwind/globals.css content is in here
+import "./index.css"; 
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/demo" element={<Demo />} />
 
-        {/* You can add a 404 page here */}
         <Route path="*" element={<h1>404: Page Not Found</h1>} />
       </Routes>
     </BrowserRouter>
