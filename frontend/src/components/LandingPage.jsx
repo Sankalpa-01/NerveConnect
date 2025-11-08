@@ -1491,7 +1491,8 @@ import {
   Video, // For buttons
   CheckCircle, // For feature lists
   ChevronDown, // For FAQ
-  ChevronUp, // For FAQ
+  ChevronUp,
+  FileText, // For FAQ
   Mail, // For contact
   Phone, // For contact
   MapPin, // For contact
@@ -1792,17 +1793,18 @@ export default function LandingPage() {
       ],
     },
     {
-      icon: <Mic className="w-12 h-12 text-green-600" />,
-      title: "Voice Appointments",
+      icon: <Calendar className="w-12 h-12 text-teal-600" />,
+      title: "Appointment & Follow-Up Tracker",
       description:
-        "Revolutionary speech-to-text system for front desk staff to book appointments hands-free.",
+        "Manage appointments, follow-ups, and reminders effortlessly with intelligent scheduling.",
       items: [
-        "Voice Recognition",
-        "Automatic Scheduling",
-        "Patient Information Capture",
-        "Confirmation System",
+        "Smart Scheduling",
+        "Follow-Up Reminders",
+        "Patient Queue Management",
+        "Calendar Sync Integration",
       ],
     },
+    
     {
       icon: <Shield className="w-12 h-12 text-red-600" />,
       title: "Secure MCP Server",
@@ -1828,17 +1830,18 @@ export default function LandingPage() {
       ],
     },
     {
-      icon: <Smartphone className="w-12 h-12 text-indigo-600" />,
-      title: "Mobile Ready",
+      icon: <FileText className="w-12 h-12 text-green-600" />,
+      title: "Smart Health Record Summarizer",
       description:
-        "Fully responsive design that works seamlessly across all devices and screen sizes.",
+        "Summarize lengthy patient health records into concise, actionable insights.",
       items: [
-        "Responsive Design",
-        "Touch Optimized",
-        "Offline Capability",
-        "Cross-platform",
+        "Automatic Medical Note Extraction",
+        "Past Diagnosis Summary",
+        "Treatment History Overview",
+        "AI-driven Recommendations",
       ],
-    },
+    }
+    
   ];
 
   const testimonials = [
@@ -2252,13 +2255,7 @@ export default function LandingPage() {
             {/* Features Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                {
-                  icon: <Mic className="w-8 h-8 text-blue-600" />,
-                  title: "Voice-Powered Efficiency",
-                  description:
-                    "Transform appointment booking with our advanced speech-to-text system. No more typing - just speak naturally and watch appointments get scheduled instantly.",
-                  highlight: "50% faster booking process",
-                },
+              
                 {
                   icon: <Brain className="w-8 h-8 text-purple-600" />,
                   title: "AI That Learns Your Style",
@@ -2287,13 +2284,7 @@ export default function LandingPage() {
                     "The system evolves with every interaction, building smarter recommendations based on successful prescriptions and treatment outcomes.",
                   highlight: "Self-improving algorithms",
                 },
-                {
-                  icon: <Users className="w-8 h-8 text-teal-600" />,
-                  title: "Streamlined Workflows",
-                  description:
-                    "From voice booking to AI prescriptions, we eliminate administrative burden so you can focus on what matters most - patient care.",
-                  highlight: "Reduced admin time by 60%",
-                },
+                
               ].map((feature, index) => (
                 <div
                   key={index}
