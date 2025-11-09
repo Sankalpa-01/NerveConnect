@@ -42,7 +42,7 @@ The project is a monorepo with a decoupled frontend and backend.
 graph TD
     User[👤 User] --> FE(⚛️ React Frontend on Vercel);
     FE --> BE(⚙️ Node/Express Backend on Render);
-    FE --> VAPI(🗣️ Web Speech API);
+    
     
     subgraph Backend
         BE --> Auth(🔐 Auth Middleware);
@@ -57,7 +57,7 @@ graph TD
     style BE fill:#333,stroke:#3C873A,stroke-width:2px,color:#fff;
     style DB fill:#47A248,stroke:#fff,stroke-width:2px,color:#fff;
     style Gemini fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff;
-    style VAPI fill:#f44336,stroke:#fff,stroke-width:2px,color:#fff;
+
 ```
 
 ## 🛠️ Tech Stack
