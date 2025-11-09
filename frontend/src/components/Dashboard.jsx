@@ -572,7 +572,7 @@ const EnhancedDoctorDashboard = () => {
             darkMode ? "bg-gray-800" : "bg-gray-100"
           }`}
         >
-          {["overview", "patients", "appointments", "analytics"].map((tab) => (
+          {["overview", "patients", "appointments"].map((tab) => (
             <button
               key={tab}
               onClick={() => setSelectedTab(tab)}
@@ -1302,22 +1302,7 @@ const EnhancedDoctorDashboard = () => {
           </section>
         </div>
       )}
-      {selectedTab === "analytics" && (
-        <div className="max-w-7xl mx-auto px-8 py-10">
-          <h2
-            className={`text-2xl font-bold mb-6 ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Analytics
-          </h2>
-          <div className="bg-white/70 dark:bg-gray-800 rounded-3xl shadow-md p-8 border border-gray-100 dark:border-gray-700">
-            <p className="text-gray-500 dark:text-gray-300">
-              Analytics tab content goes here.
-            </p>
-          </div>
-        </div>
-      )}
+      
 
       {/* Appointment Details Modal */}
       {showDetailsModal && selectedAppointment && (
