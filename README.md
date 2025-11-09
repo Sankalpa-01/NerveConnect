@@ -1,138 +1,69 @@
 # 🩺 NerveConnect - AI-Powered Clinic Management System
 
-NerveConnect is an intelligent, full-stack hospital management platform. It combines an AI Voice Frontdesk for seamless appointment booking and a Doctor Dashboard powered by the Gemini AI for smart prescription generation.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-18-blue?logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-green?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-black?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)
 
-## 🚀 Features
+---
 
-### 🧑‍⚕️ Doctor Dashboard
-Patient & Appointment Management (Full CRUD) for securely managing clinic data.
-AI-Powered Suggestions using the Google Gemini API to generate prescriptions based on symptoms and vitals.
-Doctor-in-the-Loop (DITL) interface allowing doctors to review, edit, and approve AI suggestions before saving them to the patient's record.
-Light/Dark Mode for user comfort.
+**NerveConnect** is an intelligent, full-stack hospital management platform.  
+It combines an **AI Voice Frontdesk** for seamless, voice-driven appointment booking and a **Doctor Dashboard** powered by **Google Gemini AI** for smart prescription generation.
+
+---
+
+## 🚀 Live Demo
+
+- **Frontend (Vercel):** [https://nerve-connect-frontend.vercel.app](https://nerve-connect-frontend.vercel.app)  
+- **Backend (Render):** [https://nerveconnect-backend.onrender.com](https://nerveconnect-backend.onrender.com)
+
+---
+
+## ✨ Features
+
+### 🎤 AI Voice Frontdesk (`/frontdesk`)
+- **Voice-Enabled Appointments:** Uses the Web Speech API to capture and transcribe user voice input.  
+- **AI Transcript Parsing:** Sends transcripts to the backend (`/api/auth/parse`) to interpret intent and schedule appointments, mimicking a human receptionist.
+
+### 🧑‍⚕️ Doctor Dashboard (`/dashboard`)
+- **Full Patient & Appointment CRUD:** Securely manage patient records and clinic appointments.  
+- **AI-Powered Prescription Generation:** Uses the Google Gemini API to create prescription drafts based on symptoms and vitals.  
+- **Doctor-in-the-Loop (DITL):** Review, edit, and approve AI-generated content before saving.  
+- **Light/Dark Mode:** Built-in toggle for comfort and accessibility.
 
 ### 🔐 Secure Authentication
-Full Auth Flow including sign-up, sign-in, and sign-out.
-JWT-based Session Handling stored securely in httpOnly cookies.
-Password Protection using bcrypt for hashing.
-Protected Routes via Express middleware to secure patient and dashboard data.
+- **Full Auth Flow:** Sign-Up, Sign-In, and Sign-Out support.  
+- **JWT Session Handling:** Stateless authentication using `jsonwebtoken`.  
+- **Secure Cookie Storage:** Uses `httpOnly` cookies to prevent XSS attacks.  
+- **Password Hashing:** Implements `bcryptjs` for hashing and salting.  
+- **Protected Routes:** Middleware-secured endpoints for sensitive operations.
 
-## 🧱 Tech Stack
-🎨 Frontend
-React 18, Vite, React Router, TailwindCSS, Lucide Icons, Web Speech API
+---
 
-⚙️ Backend
-Node.js, Express, MongoDB Atlas, jsonwebtoken, bcryptjs, cookie-parser, cors
+## 🧱 System Architecture
 
-🤖 AI
-Google Gemini API (via generativelanguage.googleapis.com)
+The project follows a **decoupled monorepo** architecture — separate frontend and backend layers communicating via REST APIs.
 
-🗃️ Database
-MongoDB
+```mermaid
+graph TD
+    User[👤 User] --> FE(⚛️ React Frontend on Vercel);
+    FE --> BE(⚙️ Node/Express Backend on Render);
+    FE --> VAPI(🗣️ Web Speech API);
+    
+    subgraph Backend
+        BE --> Auth(🔐 Auth Middleware);
+        Auth --> Patients(👩‍⚕️ Patient Routes);
+        Auth --> Appts(🗓️ Appointment Routes);
+        BE --> Gemini(🤖 Google Gemini API);
+        Patients --> DB[(💾 MongoDB Atlas)];
+        Appts --> DB[(💾 MongoDB Atlas)];
+    end
 
-## 🚀 Deployment
--- Vercel (Frontend) - https://nerve-connect-frontend.vercel.app
--- Render (Backend) - https://nerveconnect-backend.onrender.com
-
-## 📂 Folder Structure
-This project uses a monorepo structure with two main folders: frontend and backend.
-
-NerveConnect_React/
-├── backend/
-│   ├── controllers/
-│   │   ├── aiAnalysis.js
-│   │   ├── appointments.js
-│   │   ├── auth.js
-│   │   └── patients.js
-│   ├── lib/
-│   │   ├── gemini.js
-│   │   └── mongoClient.js
-│   ├── middleware/
-│   │   └── authMiddleware.js
-│   ├── routes/
-│   │   ├── appointmentRoutes.js
-│   │   ├── authRoutes.js
-│   │   └── patientRoutes.js
-│   ├── .env
-│   ├── package.json
-│   └── server.js
-│
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── Dashboard.jsx
-    │   │   ├── LandingPage.jsx
-    │   │   ├── SignIn.jsx
-    │   │   └── SignUp.jsx
-    │   ├── App.jsx
-    │   └── index.css
-    ├── package.json
-    └── vite.config.js
-
-
-## ⚙️ Setup & Development
-
-Follow these steps to get the project running locally.
-
-### 1. Clone the Repository
-git clone [https://github.com/your-username/NerveConnect_React.git](https://github.com/your-username/NerveConnect_React.git)
-cd NerveConnect_React
-
-### 2. Set Up the Backend
-First, cd into the backend folder to set up the server.
-
-#### 1. Navigate to the backend folder
-cd backend
-
-#### 2. Install dependencies
-npm install
-
-#### 3. Create your environment file (This is the most important step!)
-1. .env (Backend)
-Server Configuration
-PORT=4000
-FRONTEND_URL=http://localhost:5173
-
-2. MongoDB Connection
-Get this from your MongoDB Atlas dashboard
-MONGODB_URI=mongodb+srv://<username>:<password>@yourcluster.mongodb.net/yourDatabaseName
-
-3. Auth Secret
-Use any long, random string
-JWT_SECRET=THIS_IS_A_VERY_STRONG_AND_RANDOM_SECRET_KEY
-
-4. Google Gemini API Key
-Get this from Google AI Studio
-GEMINI_API_KEY=.....
-
-5. Run the backend server:
-npm start
-
-Your backend should now be running on http://localhost:4000.
-
-### 3. Set Up the Frontend
-Open a new terminal window and navigate to the frontend directory.
-
-#### 1. Navigate to the frontend folder
-cd frontend
-
-#### 2. Install dependencies
-npm install
-
-#### 3. Run the frontend development server
-npm run dev
-
-### Your frontend app will now be running on http://localhost:5173.
-
-## 🧪 Testing the App
-Visit these routes in your browser to test the application:
-http://localhost:5173/signup - to create an account, 
-http://localhost:5173/signin - to log in,  
-http://localhost:5173/dashboard - for the doctor’s AI-powered prescription tool, 
-
-## 📌 Todo / Improvements
-✅ Add doctor availability calendar ⏳ Notifications (email/text)
-
-📃 License MIT License © 2025 Rishabh Anand
-📃 License
-
-This project is licensed under the MIT License.
+    style FE fill:#282c34,stroke:#61DAFB,stroke-width:2px,color:#fff;
+    style BE fill:#333,stroke:#3C873A,stroke-width:2px,color:#fff;
+    style DB fill:#47A248,stroke:#fff,stroke-width:2px,color:#fff;
+    style Gemini fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff;
+    style VAPI fill:#f44336,stroke:#fff,stroke-width:2px,color:#fff;
