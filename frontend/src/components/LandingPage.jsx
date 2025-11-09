@@ -378,7 +378,7 @@ export default function LandingPage() {
       name: "Sarah Johnson",
       role: "Practice Manager",
       quote:
-        "The voice appointment system has cut our front desk workload in half. Our staff is more efficient and patients love the seamless experience.",
+        "The appointment system has cut our front desk workload in half. Our staff is more efficient and patients love the seamless experience.",
       stars: 4.5,
     },
     {
